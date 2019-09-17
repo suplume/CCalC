@@ -1,0 +1,46 @@
+{
+  "name": "costcalc",
+  "version": "0.0.1",
+  "description": "cost calculator",
+  "main": "app.js",
+  "scripts": {
+    "start": "npm-run-all -s clean copy fontAwesome sass webpack:build view",
+    "clean": "rimraf dist/*",
+    "copy": "cpx \"src/**/{*.html,*.json,*.eot,*.ttf,*.woff,*.png}\" dist",
+    "fontAwesome": "cpx \"node_modules/@fortawesome/fontawesome-free/webfonts/{*.svg,*.eot,*.ttf,*.woff,*.woff2}\" dist/fonts",
+    "release": "npm-run-all -s clean copy fontAwesome sass webpack:build package",
+    "view": "electron dist",
+    "sass": "node-sass --importer node_modules/node-sass-package-importer/dist/cli.js -o dist/css src/scss --output-style compressed --source-map-embed",
+    "webpack:build": "webpack",
+    "package": "electron-packager dist CCalC --overwrite --out=app --platform=win32,darwin"
+  },
+  "author": "Masaya Kato <kato@penseur.co.jp>",
+  "private": true,
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/polyfill": "^7.4.4",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "cpx": "^1.5.0",
+    "electron": "^6.0.0",
+    "electron-packager": "^14.0.4",
+    "node-sass": "^4.12.0",
+    "node-sass-package-importer": "^5.3.2",
+    "npm-run-all": "^4.1.5",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.10",
+    "react-dom": "^16.8.6",
+    "rimraf": "^2.6.3",
+    "webpack": "^4.38.0",
+    "webpack-cli": "^3.3.6"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.10.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0",
+    "puppeteer": "^1.19.0"
+  }
+}
